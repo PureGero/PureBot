@@ -66,6 +66,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                     const channel = client.channels.cache.get(channelid);
                     channel.messages.fetch(messageid).then(message => {
                         message.react(DONE_EMOJI);
+                        message.channel.send(`> ${message.content}\n${message.author} This has been completed 😄`);
                     }).catch(err => {});
                 });
             }
