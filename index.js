@@ -34,25 +34,25 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-	if(message.channel.id == TODO_LIST) {
+    if(message.channel.id == TODO_LIST) {
         message.react(DONE_EMOJI);
     }
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {
-	if (reaction.partial) {
-		try {
-			await reaction.fetch();
-		} catch (error) {
-			console.log('Something went wrong when fetching the message: ', error);
-			return;
-		}
-	}
-	
-	const guild = reaction.message.guild;
+    if (reaction.partial) {
+        try {
+            await reaction.fetch();
+        } catch (error) {
+            console.log('Something went wrong when fetching the message: ', error);
+            return;
+        }
+    }
+    
+    const guild = reaction.message.guild;
 
     guild.members.fetch(user).then(member => {
-	
+    
         if (TODO_CHANNELS.indexOf(reaction.message.channel.id) >= 0 && reaction.emoji.name === ACCEPTED_EMOJI && member.roles.cache.has(ADMIN_ROLE)) {
             const todo_list = client.channels.cache.get(TODO_LIST);
             todo_list.send(reaction.message.id + ': ' + reaction.message.author.username + ': ' + reaction.message.content);
@@ -72,8 +72,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
             }
             reaction.message.delete();
         }
-	
-	});
+    
+    });
 });
 
 client.login(TOKEN);
