@@ -1,6 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const fs = require('fs');
+const process = require('process');
+
+process.chdir(__dirname);
 
 if (!fs.existsSync('config.json')) {
     console.log('Generating config.json');
