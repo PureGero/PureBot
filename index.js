@@ -23,9 +23,12 @@ const TOKEN = config.token;
 const ADMIN_ROLE = '295432346927104000';
 const TODO_LIST = '728302319300509707';
 
+const BUGS_CHANNEL = '579870375354040340';
+const SUGGESTIONS_CHANNEL = '615023024260775946';
+
 const TODO_CHANNELS = [
-    '579870375354040340',
-    '615023024260775946'
+    BUGS_CHANNEL,
+    SUGGESTIONS_CHANNEL
 ];
 
 const DONE_EMOJI = '🏁';
@@ -68,8 +71,16 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 TODO_CHANNELS.forEach(channelid => {
                     const channel = client.channels.cache.get(channelid);
                     channel.messages.fetch(messageid).then(message => {
+                        let reply = 'This has been completed';
+                        
+                        if (channelid == BUGS_CHANNEL) {
+                            reply = 'This bug has been fixed';
+                        } else if (channelid == SUGGESTIONS_CHANNEL) {
+                            reply = 'This suggestion has been implemented';
+                        }
+                        
+                        message.channel.send(`> ${message.content}\n${message.author} ${reply} 😄`);
                         message.react(DONE_EMOJI);
-                        message.channel.send(`> ${message.content}\n${message.author} This has been completed 😄`);
                     }).catch(err => {});
                 });
             }
