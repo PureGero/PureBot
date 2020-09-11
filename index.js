@@ -33,6 +33,7 @@ const TODO_CHANNELS = [
 
 const DONE_EMOJI = '🏁';
 const ACCEPTED_EMOJI = '✅';
+const SLIMESPIDER_EMOJI = '707263484035072000';
 
 client.on('ready', () => {
     console.log('PureBot is ready');
@@ -53,6 +54,10 @@ client.on('messageReactionAdd', async (reaction, user) => {
             console.log('Something went wrong when fetching the message: ', error);
             return;
         }
+    }
+    
+    if (reaction.emoji.name === 'slimespider' && !reaction.me) {
+        reaction.message.react(SLIMESPIDER_EMOJI);
     }
     
     const guild = reaction.message.guild;
