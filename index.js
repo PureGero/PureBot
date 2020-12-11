@@ -25,6 +25,25 @@ const TODO_LIST = '728302319300509707';
 
 const BUGS_CHANNEL = '579870375354040340';
 const SUGGESTIONS_CHANNEL = '615023024260775946';
+const SNOWPAW_SPAM_CHANNEL = '754948719475949578';
+
+const WORK_REMINDERS = [
+    `Hey, it's been 5 minutes! Time to get back to work!`,
+    `Work time!`,
+    `Stop being lazy, back to work!`,
+    `Work work work!`,
+    `I know you're having a nice break, but what if I told you about this cool thing I got for you? It's work :D`,
+    `Hey, now is work time!`,
+    `Work time is the past, present and the future!`,
+    `Do you like work? Well too bad, time for work`,
+    `Come on! The economy won't run itself! Work!`,
+    `Stop sleeping on the job and work!`,
+    `Work you fool!`,
+    `I heard they brought back the death penalty to those who don't work`,
+    `Mesa work ya?`,
+    `Ring ring. Who's calling? Work! Get back to it you lazy buffoon!`,
+    `I've run out of funny things to say, just work okay? cool, cya in another 5 mins`
+];
 
 const TODO_CHANNELS = [
     BUGS_CHANNEL,
@@ -38,11 +57,17 @@ const SLIMESPIDER_EMOJI = '707263484035072000';
 client.on('ready', () => {
     console.log('PureBot is ready');
     client.user.setPresence({ activity: {name: 'Python v2.7.3'}, status: 'online' });
+    
+    //client.channels.cache.get('295429838041382912').send('<:wut:720135705061490688>');
 });
 
 client.on('message', message => {
-    if(message.channel.id == TODO_LIST) {
+    if (message.channel.id == TODO_LIST) {
         message.react(DONE_EMOJI);
+    } else if (message.channel.id == SNOWPAW_SPAM_CHANNEL && message.content == '/work') {
+        setTimeout(() => {
+            message.reply(WORK_REMINDERS[Math.floor(Math.random() * WORK_REMINDERS.length)]);
+        }, 5 * 60 * 1000);
     }
 });
 
