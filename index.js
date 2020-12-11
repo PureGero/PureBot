@@ -3,6 +3,8 @@ const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 const fs = require('fs');
 const process = require('process');
 
+const github = require('./github')(client);
+
 process.chdir(__dirname);
 
 if (!fs.existsSync('config.json')) {
