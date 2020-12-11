@@ -52,9 +52,8 @@ function sendMessageEmbed(channel, body, fields) {
     .setTitle(`[${body.repository.name}:${body.ref.substr(body.ref.lastIndexOf('/') + 1)}] ${fields.length} new commit${fields.length == 1 ? '' : 's'}`)
     //.setColor(0xf1c40f)
     //.setColor(0x00ff00)
-    .setColor(randomColor(body.repository.name));
-  
-  fields.forEach(field => embed.addField(field.name, field.value));
+    .setColor(randomColor(body.repository.name))
+    .addFields(fields);
   
   client.channels.cache.get(channel).send(embed);
 }
