@@ -49,7 +49,7 @@ function sendMessageEmbed(channel, body, fields) {
   const embed = new MessageEmbed()
     .setAuthor(body.sender.login, body.sender.avatar_url)
     .setURL(body.compare)
-    .setTitle(`[${body.repository.name}:${body.repository.ref.substr(body.repository.ref.indexOf('/') + 1)}] ${fields.length} new commit${fields.length == 1 ? '' : 's'}`)
+    .setTitle(`[${body.repository.name}:${body.ref.substr(body.ref.lastIndexOf('/') + 1)}] ${fields.length} new commit${fields.length == 1 ? '' : 's'}`)
     //.setColor(0xf1c40f)
     //.setColor(0x00ff00)
     .setColor(randomColor(body.repository.name))
