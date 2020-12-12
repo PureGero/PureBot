@@ -59,7 +59,10 @@ function sendMessageEmbed(channel, body, fields) {
 }
 
 function randomColor(string) {
-  return random(string) * 0x1000000;
+  switch (string) {
+    case 'JustSurvival':  return '#00AA00';
+    default:              return random(string) * 0x1000000;
+  }
 }
 
 function random(string) {
