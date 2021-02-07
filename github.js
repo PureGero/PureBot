@@ -4,12 +4,6 @@ const { MessageEmbed } = require('discord.js');
 
 const PORT = 4484;
 
-// #just-changelog
-// http://ethanbulmer.com:4484/github?channel=448795845031100426
-//
-// #just-development-changelog
-// http://ethanbulmer.com:4484/github?channel=715147323776434246
-
 let client = null;
 const app = express();
 
